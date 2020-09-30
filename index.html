@@ -16,10 +16,10 @@
 
 <body class="bg-dark">
 
-    <nav class="navbar navbar-light bg-light justify-content-center mb-4">
+    <nav class="navbar navbar-light bg-light justify-content-center mb-4 fixed-top">
         <span class="navbar-brand mb-0 h1">Weather Now</span>
     </nav>
-
+    <div class="w-100" style="height:80px"></div>
     <div class="container mb-5">
         <h5 class="text-light">Search for a City:</h5>
         <div class="input-group">
@@ -30,13 +30,15 @@
         </div>
     </div>
 
-    <div class="card m-3">
+    <div class="card m-3 w-75 mx-auto">
         <div id="city-name" class="card-header">
-            Quote
-            <img id="wicon" src="" alt="Weather icon"> 
         </div>
         <div id="currentWeatherMain" class="card-body">
         </div>
+    </div>
+
+    <div id="fiveDay" class="row justify-content-center w-100 m-0">
+
     </div>
 
 

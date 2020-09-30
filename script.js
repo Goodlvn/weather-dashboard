@@ -72,23 +72,21 @@ function getUV(long, lat) {
 
         var indexUV = uvResponse.value;
 
-        console.log(indexUV);
-
         var cardUV = $("<span>");
 
         cardUV.text("UV Index: " + indexUV);
 
-        if(indexUV <=2){
+        if (indexUV <= 2) {
             cardUV.attr("class", "p-2 border border-success");
             cardUV.append(" (low)");
-        } else if(indexUV <=5){
+        } else if (indexUV <= 5) {
             cardUV.attr("class", "p-2 border border-warning");
             cardUV.append(" (moderate)");
-        } else if(indexUV <= 7){
+        } else if (indexUV <= 7) {
             cardUV.attr("class", "p-2 border");
             cardUV.attr("style", "border-color:orange !important;");
             cardUV.append(" (high)");
-        } else if(indexUV <=10){
+        } else if (indexUV <= 10) {
             cardUV.attr("class", "p-2 border border-danger");
             cardUV.append(" (very high)");
         } else {
@@ -97,40 +95,18 @@ function getUV(long, lat) {
             cardUV.append(" (extreme)");
         }
 
-        // switch (indexUV) {
-        //     case (indexUV <= 2):
-        //         cardUV.attr("class", "p-2 border border-success");
-        //     break;
-
-        //     case (indexUV <= 5):
-        //         cardUV.attr("class", "p-2 border border-warning");
-        //     break;
-
-        //     case (indexUV <= 7):
-        //         cardUV.attr("class", "p-2 border border-success");
-                // cardUV.attr("style", "border: orange;");
-        //     break;
-
-        //     case (indexUV <= 10):
-        //         cardUV.attr("class", "p-2 border border-danger");
-        //     break;
-
-        //     case (indexUV < 10):
-        //         cardUV.attr("class", "p-2 border");
-        //         cardUV.attr("style", "border: purple;");
-        //     break;
-        // }
-
         $("#currentWeatherMain").append(cardUV);
-
-
-
-
     });
 
 };
 
 function fiveDayCast(cityName) {
+
+    var secTitle = $("<h2>");
+    secTitle.text("5-Day Forecast:");
+    secTitle.attr("class", "text-light d-block mx-auto col-12 text-center")
+
+    $("#fiveDay").append(secTitle);
 
     var addDay = 0;
 
@@ -156,12 +132,47 @@ function fiveDayCast(cityName) {
 
                 var todayString = mm + '/' + dd + '/' + yyyy;
 
-                // console.log(todayString);
+                console.log(todayString);
                 // console.log(fiveDayResponse.list[i].weather[0].icon);
                 // console.log(fiveDayResponse.list[i].main.temp);
                 // console.log(fiveDayResponse.list[i].main.humidity);
 
                 // card creation starts here 
+
+                var cardContainer = $("<div>");
+                cardContainer.attr("class", "card m-3")
+
+                var cardBody = $("<div>");
+                cardBody.attr("class", "card-body");
+
+                var date = $("<h3>");
+                date.text(todayString);
+
+                var weatherIcon = $("<img>");
+                var iconcode = fiveDayResponse.list[i].weather[0].icon;
+                var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+                weatherIcon.attr("src", iconurl);
+
+                var cardTemp = $("<p>");
+                cardTemp.text("Temperature: " + fiveDayResponse.list[i].main.temp + "°");
+
+                var cardHumi = $("<p>");
+                cardHumi.text("Humidity: " + fiveDayResponse.list[i].main.humidity + "%");
+
+
+
+
+
+                cardBody.append(date);
+                cardBody.append(weatherIcon);
+                cardBody.append(cardTemp);
+                cardBody.append(cardHumi);
+                cardContainer.append(cardBody);
+
+                $("#fiveDay").append(cardContainer);
+
+
+
             }
         };
 
