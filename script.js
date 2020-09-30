@@ -3,6 +3,8 @@ var apiKey = "66b8adbedf0a70ee9d83006586727a5c"
 
 var indexUV = 0;
 
+var pasteSearch;
+
 function getCurrentDate() {
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, "0");
@@ -12,7 +14,7 @@ function getCurrentDate() {
     today = mm + '/' + dd + '/' + yyyy;
 
     return today;
-}
+};
 
 function currenWeather(cityName) {
 
@@ -58,6 +60,8 @@ function currenWeather(cityName) {
         getUV(long, lat);
 
         fiveDayCast(cityName);
+
+        saveSearches();
     });
 };
 
@@ -177,7 +181,16 @@ function fiveDayCast(cityName) {
         };
 
     });
-}
+};
+
+function saveSearches() {
+    var newHistoryInput = $("<li>");
+
+    newHistoryInput.text(pasteSearch);
+    $("#pastSearch").append(newHistoryInput);
+
+    console.log(newHistoryInput);
+};
 
 function show() {
     document.getElementById("sidebar").classList.toggle("active");
@@ -188,6 +201,8 @@ $("#search-button").on("click", function () {
     var citySearch = $("#city-input").val().trim();
 
     currenWeather(citySearch);
+
+    pasteSearch = $("#city-input").val();
 
     $("#city-input").val("");
 
