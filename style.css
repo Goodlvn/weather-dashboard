@@ -1,0 +1,30 @@
+#sidebar {
+    margin:0;
+    padding: 0;
+    position: absolute;
+    width: 300px;
+    height: 100%;
+    background: #000;
+    z-index: 10000;
+    left: -300px;
+}
+
+#sidebar.active {
+    left: 0;
+}
+
+#sidebar ul li{
+    list-style: none;
+    color: #fff;
+    font-size: 20px;
+    padding: 20px 24px;
+}
+
+#sidebar .toggle-btn {
+    background: #000;
+    color: white;
+    padding: 5px;
+    position: absolute;
+    top: 0px;
+    left: 330px; 
+}

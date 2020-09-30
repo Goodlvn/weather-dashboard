@@ -179,6 +179,9 @@ function fiveDayCast(cityName) {
     });
 }
 
+function show() {
+    document.getElementById("sidebar").classList.toggle("active");
+};
 
 $("#search-button").on("click", function () {
 

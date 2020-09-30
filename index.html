@@ -10,16 +10,32 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./style.css" type="text/css">
 
-    <title>Hello, world!</title>
+    <title>Weather Now!</title>
 </head>
 
 <body class="bg-dark">
 
-    <nav class="navbar navbar-light bg-light justify-content-center mb-4 fixed-top">
+    <div id="sidebar">
+        <div class="toggle-btn" onclick="show()">
+            <p id="#history">Search History</p>
+        </div>
+
+        <ul>
+            <li>sample</li>
+            <li>sample</li>
+            <li>sample</li>
+            <li>sample</li>
+        </ul>
+        
+    </div>
+
+    <nav class="navbar navbar-light bg-light justify-content-center mb-4">
         <span class="navbar-brand mb-0 h1">Weather Now</span>
     </nav>
-    <div class="w-100" style="height:80px"></div>
+    <div class="w-100" style="height:80  px"></div>
+
     <div class="container mb-5">
         <h5 class="text-light">Search for a City:</h5>
         <div class="input-group">
@@ -29,6 +45,14 @@
             </span>
         </div>
     </div>
+
+    
+
+
+
+
+
+
 
     <div class="card m-3 w-75 mx-auto">
         <div id="city-name" class="card-header">
