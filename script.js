@@ -123,7 +123,7 @@ function fiveDayCast(cityName) {
 
         for (i = 0; i < fiveDayResponse.list.length; i++) {
 
-            if (fiveDayResponse.list[i].dt_txt.indexOf("12:00:00") !== -1) {
+            if (fiveDayResponse.list[i].dt_txt.indexOf("00:00:00") !== -1) {
 
                 addDay++;
 
@@ -170,19 +170,21 @@ function fiveDayCast(cityName) {
     });
 };
 
-function saveSearches(city) {
-    const rawData = localStorage.getItem("pastSearches");
+async function saveSearches(city) {
+    const rawData = await localStorage.getItem("pastSearches");
 
     if (rawData) {
         const data = JSON.parse(rawData);
 
-        data.filter(pastCity => {
-            if (pastCity === city) {
-                return
-            } else {
-                localStorage.setItem("pastSearches", JSON.stringify([...data, city]));
-            }
-        });
+        const split = data.includes(city);
+
+        console.log(split);
+
+        if (split) {
+            return
+        } else {
+            localStorage.setItem("pastSearches", JSON.stringify([...data, city]));
+        }
 
     } else {
         localStorage.setItem("pastSearches", JSON.stringify([city]));
