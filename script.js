@@ -61,7 +61,7 @@ function currenWeather(cityName) {
 
         fiveDayCast(cityName);
 
-        saveSearches();
+        saveSearches(response.name);
     });
 };
 
@@ -136,13 +136,6 @@ function fiveDayCast(cityName) {
 
                 var todayString = mm + '/' + dd + '/' + yyyy;
 
-                console.log(todayString);
-                // console.log(fiveDayResponse.list[i].weather[0].icon);
-                // console.log(fiveDayResponse.list[i].main.temp);
-                // console.log(fiveDayResponse.list[i].main.humidity);
-
-                // card creation starts here 
-
                 var cardContainer = $("<div>");
                 cardContainer.attr("class", "card m-3")
 
@@ -171,21 +164,39 @@ function fiveDayCast(cityName) {
 
                 $("#fiveDay").append(cardContainer);
 
-
-
             }
         };
 
     });
 };
 
-function saveSearches() {
-    var newHistoryInput = $("<li>");
+function saveSearches(city) {
+    const rawData = localStorage.getItem("pastSearches");
 
-    newHistoryInput.text(pasteSearch);
-    $("#pastSearch").append(newHistoryInput);
+    if (rawData) {
+        const data = JSON.parse(rawData);
 
-    console.log(newHistoryInput);
+        data.filter(pastCity => {
+            if (pastCity === city) {
+                return
+            } else {
+                localStorage.setItem("pastSearches", JSON.stringify([...data, city]));
+            }
+        });
+
+    } else {
+        localStorage.setItem("pastSearches", JSON.stringify([city]));
+    }
+};
+
+function getPastSearches() {
+    const rawData = localStorage.getItem("pastSearches");
+    if (rawData) {
+        const data = JSON.parse(rawData);
+        console.log(data);
+    } else {
+        console.log("data does not exist");
+    }
 };
 
 function show() {
@@ -201,7 +212,6 @@ $("#search-button").on("click", function () {
     pasteSearch = $("#city-input").val();
 
     $("#city-input").val("");
-
 
 });
 
