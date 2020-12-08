@@ -60,8 +60,8 @@ function currenWeather(cityName) {
         getUV(long, lat);
 
         fiveDayCast(cityName);
-
         saveSearches(response.name);
+        displaySearches();
     });
 };
 
@@ -175,10 +175,7 @@ async function saveSearches(city) {
 
     if (rawData) {
         const data = JSON.parse(rawData);
-
         const split = data.includes(city);
-
-        console.log(split);
 
         if (split) {
             return
@@ -191,11 +188,24 @@ async function saveSearches(city) {
     }
 };
 
-function getPastSearches() {
+function displaySearches() {
     const rawData = localStorage.getItem("pastSearches");
     if (rawData) {
-        const data = JSON.parse(rawData);
-        console.log(data);
+        const unsortedData = JSON.parse(rawData);
+        const data = unsortedData.sort();
+
+        let container = $("#pastSearch");
+
+        console.log(container);
+
+        data.forEach(city => {
+            let cityEl = $("<li>");
+            cityEl.text(city)
+
+            container.append(cityEl);
+        })
+
+
     } else {
         console.log("data does not exist");
     }
@@ -217,7 +227,7 @@ $("#search-button").on("click", function () {
 
 });
 
-
+displaySearches();
 
 
 
