@@ -18,10 +18,10 @@ function getCurrentDate() {
 
 function currenWeather(cityName) {
 
-    var queryURl = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=" + apiKey;
+    var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=imperial&appid=${apiKey}`;
 
     $.ajax({
-        url: queryURl,
+        url: queryURL,
         method: "GET"
     }).then(function (response) {
 
@@ -162,10 +162,6 @@ function fiveDayCast(cityName) {
 
                 var cardHumi = $("<p>");
                 cardHumi.text("Humidity: " + fiveDayResponse.list[i].main.humidity + "%");
-
-
-
-
 
                 cardBody.append(date);
                 cardBody.append(weatherIcon);
