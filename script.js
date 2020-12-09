@@ -35,7 +35,7 @@ function currentWeather(cityName) {
 
         var weatherIcon = $("<img>");
         var iconcode = response.weather[0].icon;
-        var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+        var iconurl = "https://openweathermap.org/img/w/" + iconcode + ".png";
 
         weatherIcon.attr("id", "wicon");
         weatherIcon.attr("src", iconurl);
@@ -148,7 +148,7 @@ function fiveDayCast(cityName) {
 
                 var weatherIcon = $("<img>");
                 var iconcode = fiveDayResponse.list[i].weather[0].icon;
-                var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+                var iconurl = "https://openweathermap.org/img/w/" + iconcode + ".png";
                 weatherIcon.attr("src", iconurl);
 
                 var cardTemp = $("<p>");
