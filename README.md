@@ -1,11 +1,10 @@
 # weather-dashboard
 
-[![Generic badge](https://img.shields.io/badge/😗-react-blue.svg)](https://shields.io/)
-[![Generic badge](https://img.shields.io/badge/🙃-material--ui-blue.svg)](https://shields.io/)
+[![Generic badge](https://img.shields.io/badge/JQuery-blue.svg)](https://shields.io/)
 
 ## Description
 
-This is is the third iteration of our [portfolio](https://jds-mern-world.herokuapp.com/)! This was the first time that we are creating our portfolio site using react! To make this I used the Material UI for the pre built components it offers. Although I am pleased with the clean look of the portfolio I would like to add more of my personality into the next iteration of it! The structure is still the same. There is a portfolio section that highlights a few of my preojects as well as a contact me section which saves the users infomation to a mongo db data base!
+Find out the weather haps any where in the world [here](https://goodlvn.github.io/weather-dashboard/)! In this assignment we were tasked with using a third party api [openWeather](https://openweathermap.org/api) in order to find out the current weather conditions of any given city. As a user you should also be able to see a five day forcast of said city. There should also be a way to re-visit the information for cities that you have searched for in the past!
 
 ## Table of Contents
 
@@ -23,33 +22,37 @@ This is is the third iteration of our [portfolio](https://jds-mern-world.herokua
 
 ## Preview
 
-![portfolio preview](client/public/images/reactPort.gif)
+![portfolio preview](./assets/images/wd.gif)
 
 ## Project Significance
 
-This project was great practice at creating something that is a direct representation of the quality of work we can do. It felt more "high stakes" than the react project we had been working up to this point. The website is simple enough that the user won't really be able to tell that this is a react site. Still, as the developer, if felt like this was a personal stamp of my ability to create with react up to this point!
+This assignment was the first time we communicated with a third party api on our own! We had to make sure we read the docs and understood how to add the information to the dynamic html elements that we were creating. It was reall great practice to use local storage as a method of saviing user data!
 
 ## Code Highlights
 
-It doesn't seem like there is much going on in the code. Truthfully there is not much going on the user enmd display either. Now that I am coming back to this read me after having some more react practice under my belt I can say that I was dead set on only using material ui components for this. In my next iteration of my portfolio I will keep in mind that I can mix in some custom built components with material ui. If I did this at the time of building this I would have ended up with a cleaner navigation bar with some cool css effects!
+This felt like the funnest part of the assignment to work on. As a developer we want to make sure that we save all of the cities the user has searched so that we can iterate through them later and generate the html elements. That being said, what if a user searches a city more than once? We need to make sure that if we have already seen this input (the city) then we don't save it to local storage again.
+
+It was a lot of fun trying to figure out which higher order array method to use in order to do this. I ended up landing on ".includes"! Once we grab the item from local storage and parse it into js we can iterate through it to check if the current search already exists! If so we dont save, if we do then we spread the current array and add one more entry to it! If there is no data in local storage we go ahead and save the current search in an array!
 
 ```
- <Grid container spacing={3} style={{justifyContent:"center"}}>
-        <Grid className={classes.right} item lg={6}  >
-          <Link style={{padding: "20px", color: "green"}} to="/" className={classes.navItems}>
-            HOME
-          </Link>
-        </Grid>
+ async function saveSearches(city) {
+    const rawData = await localStorage.getItem("pastSearches");
 
-        <Grid className={classes.left} item lg={6}  >
-          <Link style={{padding: "20px", color: "green"}} to="/contact" className={classes.navItems}>
-            CONTACT
-          </Link>
-        </Grid>
-      </Grid>
+    if (rawData) {
+        const data = JSON.parse(rawData);
+        const split = data.includes(city);
+
+        if (split) {
+            return
+        } else {
+            localStorage.setItem("pastSearches", JSON.stringify([...data, city]));
+        }
+
+    } else {
+        localStorage.setItem("pastSearches", JSON.stringify([city]));
+    }
+};
 ```
-
-![portfolio preview](client/public/images/nav.png)
 
 ## License
 

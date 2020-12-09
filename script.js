@@ -237,18 +237,3 @@ $("#pastSearch").on("click", (e) => {
     currentWeather(e.target.innerText);
     document.getElementById("sidebar").classList.remove("active");
 })
-
-
-
-
-
-// How to get current date
-// https://www.w3schools.com/js/js_dates.asp
-// https://stackoverflow.com/questions/1531093/how-do-i-get-the-current-date-in-javascript
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart
-
-// how to set icons to weather
-// https://stackoverflow.com/questions/44177417/how-to-display-openweathermap-weather-icon
-
-
-
