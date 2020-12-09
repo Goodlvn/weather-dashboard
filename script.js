@@ -16,7 +16,7 @@ function getCurrentDate() {
     return today;
 };
 
-function currenWeather(cityName) {
+function currentWeather(cityName) {
 
     var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=imperial&appid=${apiKey}`;
 
@@ -196,12 +196,12 @@ function displaySearches() {
 
         let container = $("#pastSearch");
 
-        console.log(container);
+        container.empty();
 
         data.forEach(city => {
             let cityEl = $("<li>");
             cityEl.text(city)
-
+            cityEl.attr("class", "pastCity");
             container.append(cityEl);
         })
 
@@ -212,14 +212,14 @@ function displaySearches() {
 };
 
 function show() {
-    document.getElementById("sidebar").classList.toggle("active");
+    document.getElementById("sidebar").classList.add("active");
 };
 
 $("#search-button").on("click", function () {
 
     var citySearch = $("#city-input").val().trim();
 
-    currenWeather(citySearch);
+    currentWeather(citySearch);
 
     pasteSearch = $("#city-input").val();
 
@@ -227,27 +227,16 @@ $("#search-button").on("click", function () {
 
 });
 
+$("#back").on("click", () => {
+    document.getElementById("sidebar").classList.remove("active");
+});
+
 displaySearches();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+$("#pastSearch").on("click", (e) => {
+    currentWeather(e.target.innerText);
+    document.getElementById("sidebar").classList.remove("active");
+})
 
 
 
