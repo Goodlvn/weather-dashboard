@@ -108,8 +108,9 @@ function fiveDayCast(cityName) {
 
     var secTitle = $("<h2>");
     secTitle.text("5-Day Forecast:");
-    secTitle.attr("class", "text-light d-block mx-auto col-12 text-center")
+    secTitle.attr("class", "text-light d-block mx-auto col-12 text-center");
 
+    $("#fiveDay").empty();
     $("#fiveDay").append(secTitle);
 
     var addDay = 0;
