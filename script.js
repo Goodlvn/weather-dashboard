@@ -67,7 +67,7 @@ function currentWeather(cityName) {
 
 function getUV(long, lat) {
 
-    var queryURl = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + long + "&appid=" + apiKey;
+    var queryURl = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + long + "&appid=" + apiKey;
 
     $.ajax({
         url: queryURl,
@@ -115,7 +115,7 @@ function fiveDayCast(cityName) {
 
     var addDay = 0;
 
-    var queryURl = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=imperial&appid=" + apiKey;
+    var queryURl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=imperial&appid=" + apiKey;
 
     $.ajax({
         url: queryURl,
