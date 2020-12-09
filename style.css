@@ -11,6 +11,7 @@
 
 #sidebar.active {
   left: 0;
+  overflow-y: scroll;
 }
 
 #sidebar ul li {
@@ -20,11 +21,29 @@
   padding: 20px 24px;
 }
 
-#sidebar .toggle-btn {
+.toggle-btn {
   background: #000;
   color: white;
   padding: 5px;
   position: absolute;
   top: 0px;
   left: 330px;
+  z-index: 5000;
+}
+
+#tab {
+  cursor: pointer;
+}
+
+#back {
+  height: 25px;
+  position: fixed;
+  margin: 13px;
+  margin-top: 13px;
+  cursor: pointer;
+}
+
+.pastCity:hover {
+  background-color: grey;
+  cursor: pointer;
 }
